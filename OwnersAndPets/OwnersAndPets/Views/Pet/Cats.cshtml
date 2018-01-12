@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OwnersAndPets.Models.OwnerModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cats</title>
+</head>
+<body>
+    <table class="table">
+        <tr>
+            <th>Male</th>
+            @foreach (var item in (from person in Model
+                                  from pet in person.Pets
+                                  where person.Gender == "Male"
+                                  orderby pet.Name
+                                  select pet).Distinct())
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+            }
+        </tr>
+        
+        <tr></tr>
+
+        <tr>
+            <th>Female</th>
+            @foreach (var item in (from person in Model
+                                  from pet in person.Pets
+                                  where person.Gender == "Female"
+                                  orderby pet.Name
+                                  select pet).Distinct())
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+            </tr>
+            }
+            </tr>    
+    </table>
+</body>
+</html>
