@@ -10,16 +10,16 @@ namespace OwnersAndPets.Controllers
     {
         private readonly IOwnerAccessor _ownerAccessor;
 
+        public PetController(IOwnerAccessor ownerAccessor)
+        {
+            _ownerAccessor = ownerAccessor;
+        }
+
         public PetController()
         {
             _ownerAccessor = ObjectLocator.GetInstance<IOwnerAccessor>(); 
         }
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        
         [HttpGet]
         public ActionResult Cats()
         {
